@@ -60,21 +60,27 @@ func TestReElection2A(t *testing.T) {
 	cfg.begin("Test (2A): election after network failure")
 
 	leader1 := cfg.checkOneLeader()
+	fmt.Println("leader:", leader1)
 
 	// if the leader disconnects, a new one should be elected.
 	cfg.disconnect(leader1)
+	fmt.Println("-------------peer", leader1, "disconnected-------------")
 	cfg.checkOneLeader()
 
 	// if the old leader rejoins, that shouldn't
 	// disturb the new leader. and the old leader
 	// should switch to follower.
 	cfg.connect(leader1)
+	fmt.Println("-------------peer", leader1, "connected-------------")
 	leader2 := cfg.checkOneLeader()
+	fmt.Println("leader:", leader2)
 
 	// if there's no quorum, no new leader should
 	// be elected.
 	cfg.disconnect(leader2)
+	fmt.Println("-------------peer", leader2, "disconnected-------------")
 	cfg.disconnect((leader2 + 1) % servers)
+	fmt.Println("-------------peer", (leader2+1)%servers, "disconnected-------------")
 	time.Sleep(2 * RaftElectionTimeout)
 
 	// check that the one connected server
@@ -83,6 +89,7 @@ func TestReElection2A(t *testing.T) {
 
 	// if a quorum arises, it should elect a leader.
 	cfg.connect((leader2 + 1) % servers)
+	fmt.Println("-------------peer", (leader2+1)%servers, "connected-------------")
 	cfg.checkOneLeader()
 
 	// re-join of last node shouldn't prevent leader from existing.
@@ -104,12 +111,14 @@ func TestManyElections2A(t *testing.T) {
 	iters := 10
 	for ii := 1; ii < iters; ii++ {
 		// disconnect three nodes
+
 		i1 := rand.Int() % servers
 		i2 := rand.Int() % servers
 		i3 := rand.Int() % servers
 		cfg.disconnect(i1)
 		cfg.disconnect(i2)
 		cfg.disconnect(i3)
+		fmt.Println("-------------peer", i1, i2, i3, "disconnected-------------")
 
 		// either the current leader should still be alive,
 		// or the remaining four should elect a new one.
@@ -118,6 +127,7 @@ func TestManyElections2A(t *testing.T) {
 		cfg.connect(i1)
 		cfg.connect(i2)
 		cfg.connect(i3)
+		fmt.Println("-------------peer", i1, i2, i3, "connected-------------")
 	}
 
 	cfg.checkOneLeader()
@@ -182,7 +192,7 @@ func TestRPCBytes2B(t *testing.T) {
 }
 
 // test just failure of followers.
-func For2023TestFollowerFailure2B(t *testing.T) {
+func TestFor2023TestFollowerFailure2B(t *testing.T) {
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -227,7 +237,7 @@ func For2023TestFollowerFailure2B(t *testing.T) {
 }
 
 // test just failure of leaders.
-func For2023TestLeaderFailure2B(t *testing.T) {
+func TestFor2023TestLeaderFailure2B(t *testing.T) {
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -498,7 +508,6 @@ func TestBackup2B(t *testing.T) {
 	defer cfg.cleanup()
 
 	cfg.begin("Test (2B): leader backs up quickly over incorrect follower logs")
-
 	cfg.one(rand.Int(), servers, true)
 
 	// put leader and one follower in a partition
@@ -511,9 +520,6 @@ func TestBackup2B(t *testing.T) {
 	for i := 0; i < 50; i++ {
 		cfg.rafts[leader1].Start(rand.Int())
 	}
-
-	time.Sleep(RaftElectionTimeout / 2)
-
 	cfg.disconnect((leader1 + 0) % servers)
 	cfg.disconnect((leader1 + 1) % servers)
 
@@ -549,7 +555,7 @@ func TestBackup2B(t *testing.T) {
 	cfg.connect((leader1 + 0) % servers)
 	cfg.connect((leader1 + 1) % servers)
 	cfg.connect(other)
-
+	// fmt.Println("*****", leader1, (leader1+1)%servers, other, "***********************", leader2, "************************************")
 	// lots of successful commands to new group.
 	for i := 0; i < 50; i++ {
 		cfg.one(rand.Int(), 3, true)
@@ -559,6 +565,13 @@ func TestBackup2B(t *testing.T) {
 	for i := 0; i < servers; i++ {
 		cfg.connect(i)
 	}
+
+	// fmt.Println("===============================================================")
+	// for i := 0; i < servers; i++ {
+	// 	fmt.Println(cfg.rafts[i].log)
+	// }
+	// fmt.Println("===============================================================")
+
 	cfg.one(rand.Int(), servers, true)
 
 	cfg.end()
@@ -855,6 +868,12 @@ func TestFigure82C(t *testing.T) {
 		}
 	}
 
+	// fmt.Println("===============================================================")
+	// for i := 0; i < servers; i++ {
+	// 	fmt.Println(cfg.rafts[i].log)
+	// }
+	// fmt.Println("===============================================================")
+
 	cfg.one(rand.Int(), servers, true)
 
 	cfg.end()
@@ -1132,7 +1151,7 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 		for i := 0; i < nn; i++ {
 			cfg.rafts[sender].Start(rand.Int())
 		}
-
+		// fmt.Println("||||||||||||||||||||||", i, 1, "|||||||||||||||||||||||||")
 		// let applier threads catch up with the Start()'s
 		if disconnect == false && crash == false {
 			// make sure all followers have caught up, so that
@@ -1146,6 +1165,7 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 		if cfg.LogSize() >= MAXLOGSIZE {
 			cfg.t.Fatalf("Log size too large")
 		}
+		// fmt.Println("***********************", i, 2, "*************************")
 		if disconnect {
 			// reconnect a follower, who maybe behind and
 			// needs to rceive a snapshot to catch up.

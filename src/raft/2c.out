@@ -1,0 +1,366 @@
+warning: only one CPU, which may conceal locking bugs
+Test (2C): basic persistence ...
+  ... Passed --   3.7  3   92   22998    6
+Test (2C): more persistence ...
+  ... Passed --  16.3  5  956  206654   16
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+  ... Passed --   2.0  3   42   10260    4
+Test (2C): Figure 8 ...
+  ... Passed --  31.0  5  936  156158    8
+Test (2C): unreliable agreement ...
+  ... Passed --   7.5  5  424  129848  246
+Test (2C): Figure 8 (unreliable) ...
+  ... Passed --  33.6  5 1728 6161127  926
+Test (2C): churn ...
+  ... Passed --  16.2  5  928  457612  310
+Test (2C): unreliable churn ...
+--- FAIL: TestUnreliableChurn2C (26.41s)
+    config.go:610: one(7847199429200841293) failed to reach agreement
+FAIL
+exit status 1
+FAIL	6.824/raft	136.607s
+warning: only one CPU, which may conceal locking bugs
+Test (2C): basic persistence ...
+  ... Passed --   3.7  3   88   22038    6
+Test (2C): more persistence ...
+  ... Passed --  16.2  5  948  204708   16
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+  ... Passed --   1.8  3   38    9386    4
+Test (2C): Figure 8 ...
+  ... Passed --  36.3  5  984  171299   13
+Test (2C): unreliable agreement ...
+  ... Passed --   7.7  5  428  131715  246
+Test (2C): Figure 8 (unreliable) ...
+--- FAIL: TestFigure8Unreliable2C (39.92s)
+    config.go:610: one(8381) failed to reach agreement
+Test (2C): churn ...
+  ... Passed --  16.2  5 1020  398719  322
+Test (2C): unreliable churn ...
+  ... Passed --  16.2  5  868  501636  174
+FAIL
+exit status 1
+FAIL	6.824/raft	137.967s
+warning: only one CPU, which may conceal locking bugs
+Test (2C): basic persistence ...
+  ... Passed --   3.7  3   90   22638    6
+Test (2C): more persistence ...
+  ... Passed --  16.5  5  964  208288   16
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+  ... Passed --   1.8  3   40    9962    4
+Test (2C): Figure 8 ...
+  ... Passed --  35.5  5 1020  178338   12
+Test (2C): unreliable agreement ...
+  ... Passed --   7.5  5  448  135249  246
+Test (2C): Figure 8 (unreliable) ...
+--- FAIL: TestFigure8Unreliable2C (48.52s)
+    config.go:610: one(3657) failed to reach agreement
+Test (2C): churn ...
+  ... Passed --  23.6  5 1460 1179441  211
+Test (2C): unreliable churn ...
+  ... Passed --  16.2  5  916  497441  221
+FAIL
+exit status 1
+FAIL	6.824/raft	153.343s
+warning: only one CPU, which may conceal locking bugs
+Test (2C): basic persistence ...
+  ... Passed --   3.7  3   92   23054    6
+Test (2C): more persistence ...
+  ... Passed --  16.4  5  968  208454   16
+Test (2C): partitioned leader and one follower crash, leader restarts ...
+  ... Passed --   1.9  3   40    9890    4
+Test (2C): Figure 8 ...
+  ... Passed --  32.9  5 1056  180460    8
+Test (2C): unreliable agreement ...
+  ... Passed --   7.7  5  420  130821  246
+Test (2C): Figure 8 (unreliable) ...
+--- FAIL: TestFigure8Unreliable2C (41.62s)
+    config.go:610: one(518) failed to reach agreement
+Test (2C): churn ...
+  ... Passed --  16.3  5 1080  435694  345
+Test (2C): unreliable churn ...
+  ... Passed --  23.3  5 1108  561203  179
+FAIL
+exit status 1
+FAIL	6.824/raft	143.785s
+warning: only one CPU, which may conceal locking bugs
+Test (2C): basic persistence ...
+signal: interrupt
+FAIL	6.824/raft	0.588s
+warning: only one CPU, which may conceal locking bugs
+Test (2C): basic persistence ...
+87444 t 0 c 0 p 1 rf.aeTimer reset
+87444 t 0 c 0 p 1 Follower -> PreVote
+87445 t 0 c 0 p 2 received peer 1 RequestPreVote false 0 0
+87445 t 0 c 0 p 2 prevotes for peer 1/-1
+87445 t 0 c 0 p 1 Call peer 2 SendRequestVote Success! cost: 610.881µs sendRequestVoteTimeout = 32.122176ms
+87445 t 0 c 0 p 0 received peer 1 RequestPreVote false 0 0
+87445 t 0 c 0 p 0 prevotes for peer 1/-1
+87445 t 0 c 0 p 1 Call peer 0 SendRequestVote Success! cost: 714.403µs sendRequestVoteTimeout = 25.840621ms
+87445 t 0 c 0 p 1 PreVote -> Candidate 3/3
+87446 t 0 c 0 p 2 received peer 1 RequestVote
+87446 t 0 c 0 p 2 finds peer 1 Term 1 larger then its currentTerm 0
+87446 t 0 c 0 p 2 Follower -> Follower 
+87446 t 1 c 0 p 2 votes for peer 1/-1
+87446 t 1 c 0 p 1 Call peer 2 SendRequestVote Success! cost: 688.356µs sendRequestVoteTimeout = 20.810168ms
+87446 t 0 c 0 p 0 received peer 1 RequestVote
+87446 t 0 c 0 p 0 finds peer 1 Term 1 larger then its currentTerm 0
+87446 t 0 c 0 p 0 Follower -> Follower 
+87446 t 1 c 0 p 0 votes for peer 1/-1
+87446 t 1 c 0 p 1 Call peer 0 SendRequestVote Success! cost: 781.063µs sendRequestVoteTimeout = 16.804347ms
+87446 t 1 c 0 p 1 Candidate -> Leader, 3/3
+87447 t 1 c 0 p 2 received peer 1 RequestAppendEntries
+87447 t 1 c 0 p 2 rf.timer reset 257ms
+87447 t 1 c 0 p 2 log length is 1 args.PrevLogIndex from peer 1 is 0
+87447 t 1 c 0 p 2 [{0 <nil>} {0 <nil>}] [{0 <nil>}]
+87447 t 1 c 0 p 1 Call peer 2 SendAppendEntries Success! cost: 683.108µs sendAppendEntriesTimeout = 32.136621ms
+87447 t 1 c 0 p 0 received peer 1 RequestAppendEntries
+87447 t 1 c 0 p 0 rf.timer reset 380ms
+87447 t 1 c 0 p 0 log length is 1 args.PrevLogIndex from peer 1 is 0
+87447 t 1 c 0 p 0 [{0 <nil>} {0 <nil>}] [{0 <nil>}]
+87448 t 1 c 0 p 1 Call peer 0 SendAppendEntries Success! cost: 798.797µs sendAppendEntriesTimeout = 25.869056ms
+87448 t 1 c 0 p 1 leader waiting
+87489 t 1 c 0 p 1 received command 11
+87489 t 1 c 0 p 1 append log index is 1
+87548 t 1 c 0 p 2 received peer 1 RequestAppendEntries
+87548 t 1 c 0 p 2 rf.timer reset 257ms
+87548 t 1 c 0 p 2 log length is 2 args.PrevLogIndex from peer 1 is 0
+87549 t 1 c 0 p 2 [{0 <nil>} {1 11} {0 <nil>}] [{1 11} {0 <nil>}]
+87549 t 1 c 0 p 1 Call peer 2 SendAppendEntries Success! cost: 902.7µs sendAppendEntriesTimeout = 20.875784ms
+87548 t 1 c 0 p 0 received peer 1 RequestAppendEntries
+87549 t 1 c 0 p 0 rf.timer reset 380ms
+87549 t 1 c 0 p 0 log length is 2 args.PrevLogIndex from peer 1 is 0
+87549 t 1 c 0 p 0 [{0 <nil>} {1 11} {0 <nil>}] [{1 11} {0 <nil>}]
+87549 t 1 c 0 p 1 Call peer 0 SendAppendEntries Success! cost: 850.001µs sendAppendEntriesTimeout = 16.870627ms
+87549 t 1 c 0 p 1 0 2 1 [1 1 1]
+87549 t 1 c 1 p 1 Release: 1
+87549 t 1 c 1 p 1 commitIndex 1 nextIndex [2 2 2]
+87550 t 1 c 0 p 2 received peer 1 RequestAppendEntries
+87550 t 1 c 0 p 2 rf.timer reset 257ms
+87550 t 1 c 0 p 2 log length is 3 args.PrevLogIndex from peer 1 is 1
+87550 t 1 c 0 p 2 [{0 <nil>} {1 11} {0 <nil>}] [{0 <nil>}]
+87550 t 1 c 1 p 2 Release: 1
+87550 t 1 c 1 p 1 Call peer 2 SendAppendEntries Success! cost: 700.351µs sendAppendEntriesTimeout = 13.636571ms
+87550 t 1 c 0 p 0 received peer 1 RequestAppendEntries
+87550 t 1 c 0 p 0 rf.timer reset 380ms
+87550 t 1 c 0 p 0 log length is 3 args.PrevLogIndex from peer 1 is 1
+87550 t 1 c 0 p 0 [{0 <nil>} {1 11} {0 <nil>}] [{0 <nil>}]
+87551 t 1 c 1 p 0 Release: 1
+87551 t 1 c 1 p 1 Call peer 0 SendAppendEntries Success! cost: 1.15553ms sendAppendEntriesTimeout = 11.140362ms
+87551 t 1 c 1 p 1 leader waiting
+87551 t 1 c 1 p 0 log 1 {1 11} -> applyCh
+87549 t 1 c 1 p 1 log 1 {1 11} -> applyCh
+87550 t 1 c 1 p 2 log 1 {1 11} -> applyCh
+87570 t 0 c 0 p 0 readPersist: PersistentState, {1 1 [{0 <nil>} {1 11} {0 <nil>}]}
+87570 t 0 c 0 p 1 readPersist: PersistentState, {1 1 [{0 <nil>} {1 11}]}
+87570 t 0 c 0 p 2 readPersist: PersistentState, {1 1 [{0 <nil>} {1 11} {0 <nil>}]}
+87644 t 1 c 1 p 1 rf.aeTimer reset
+87807 t 1 c 1 p 2 rf.aeTimer reset
+87807 t 1 c 1 p 2 Follower -> PreVote
+87864 t 1 c 0 p 1 rf.aeTimer reset
+87864 t 1 c 0 p 1 Follower -> PreVote
+87864 t 1 c 0 p 2 rf.aeTimer reset
+87865 t 1 c 0 p 2 Follower -> PreVote
+87865 t 1 c 0 p 1 received peer 2 RequestPreVote false 2 1
+87865 t 1 c 0 p 1 prevotes for peer 2/1
+87865 t 1 c 0 p 0 received peer 1 RequestPreVote false 1 2
+87865 t 1 c 0 p 1 Call peer 0 SendRequestVote Success! cost: 661.516µs sendRequestVoteTimeout = 13.57578ms
+87865 t 1 c 0 p 2 received peer 1 RequestPreVote false 1 2
+87865 t 1 c 0 p 1 Call peer 2 SendRequestVote Success! cost: 1.007068ms sendRequestVoteTimeout = 11.062037ms
+87865 t 1 c 0 p 0 received peer 2 RequestPreVote false 2 2
+87865 t 1 c 0 p 0 prevotes for peer 2/1
+87865 t 1 c 0 p 2 Call peer 1 SendRequestVote Success! cost: 741.821µs sendRequestVoteTimeout = 8.997993ms
+87866 t 1 c 0 p 2 Call peer 0 SendRequestVote Success! cost: 342.143µs sendRequestVoteTimeout = 7.266823ms
+87866 t 1 c 0 p 2 PreVote -> Candidate 3/3
+87866 t 1 c 0 p 1 received peer 2 RequestVote
+87866 t 1 c 0 p 1 finds peer 2 Term 2 larger then its currentTerm 1
+87866 t 1 c 0 p 1 PreVote -> Follower 
+87866 t 2 c 0 p 1 -------- 2 1 --------------
+87866 t 2 c 0 p 1 doesn't vote for peer 2
+87866 t 2 c 0 p 2 Call peer 1 SendRequestVote Success! cost: 374.949µs sendRequestVoteTimeout = 5.888448ms
+87866 t 1 c 0 p 0 received peer 2 RequestVote
+87866 t 1 c 0 p 0 finds peer 2 Term 2 larger then its currentTerm 1
+87866 t 1 c 0 p 0 Follower -> Follower 
+87866 t 2 c 0 p 0 votes for peer 2/-1
+87866 t 2 c 0 p 2 Call peer 0 SendRequestVote Success! cost: 473.329µs sendRequestVoteTimeout = 4.805424ms
+87867 t 2 c 0 p 2 Candidate -> Leader, 3/2
+87867 t 2 c 0 p 1 received peer 2 RequestAppendEntries
+87867 t 2 c 0 p 1 rf.timer reset 387ms
+87867 t 2 c 0 p 2 Call peer 1 SendAppendEntries Success! cost: 310.799µs sendAppendEntriesTimeout = 8.974449ms
+87867 t 2 c 0 p 0 received peer 2 RequestAppendEntries
+87867 t 2 c 0 p 0 rf.timer reset 390ms
+87867 t 2 c 0 p 0 log length is 3 args.PrevLogIndex from peer 2 is 2
+87867 t 2 c 0 p 0 [{0 <nil>} {1 11} {0 <nil>} {0 <nil>}] [{0 <nil>}]
+87867 t 2 c 0 p 2 Call peer 0 SendAppendEntries Success! cost: 364.923µs sendAppendEntriesTimeout = 7.252543ms
+87867 t 2 c 0 p 2 leader waiting
+87872 t 2 c 0 p 2 received command 12
+87872 t 2 c 0 p 2 append log index is 3
+87931 t 1 c 1 p 0 rf.aeTimer reset
+87931 t 1 c 1 p 0 Follower -> PreVote
+87967 t 2 c 0 p 1 received peer 2 RequestAppendEntries
+87968 t 2 c 0 p 1 rf.timer reset 387ms
+87968 t 2 c 0 p 1 log length is 2 args.PrevLogIndex from peer 2 is 1
+87968 t 2 c 0 p 1 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>} {2 12} {0 <nil>}]
+87968 t 2 c 0 p 2 Call peer 1 SendAppendEntries Success! cost: 816.258µs sendAppendEntriesTimeout = 5.965286ms
+87968 t 2 c 0 p 0 received peer 2 RequestAppendEntries
+87968 t 2 c 0 p 0 rf.timer reset 390ms
+87968 t 2 c 0 p 0 log length is 4 args.PrevLogIndex from peer 2 is 2
+87968 t 2 c 0 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{2 12} {0 <nil>}]
+87969 t 2 c 0 p 2 Call peer 0 SendAppendEntries Success! cost: 1.022626ms sendAppendEntriesTimeout = 4.976754ms
+87969 t 2 c 0 p 2 0 4 3 [3 3 3]
+87969 t 2 c 3 p 2 Release: 3
+87969 t 2 c 3 p 2 commitIndex 3 nextIndex [4 4 4]
+87969 t 2 c 0 p 1 received peer 2 RequestAppendEntries
+87969 t 2 c 0 p 1 rf.timer reset 387ms
+87969 t 2 c 0 p 1 log length is 5 args.PrevLogIndex from peer 2 is 3
+87969 t 2 c 0 p 1 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+87969 t 2 c 3 p 1 Release: 3
+87969 t 2 c 3 p 2 Call peer 1 SendAppendEntries Success! cost: 500.134µs sendAppendEntriesTimeout = 4.08143ms
+87969 t 2 c 3 p 2 log 1 {1 11} -> applyCh
+87969 t 2 c 3 p 2 log 2 {0 <nil>} -> applyCh
+87969 t 2 c 3 p 2 log 3 {2 12} -> applyCh
+87969 t 2 c 0 p 0 received peer 2 RequestAppendEntries
+87970 t 2 c 0 p 0 rf.timer reset 390ms
+87970 t 2 c 0 p 0 log length is 5 args.PrevLogIndex from peer 2 is 3
+87970 t 2 c 0 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+87970 t 2 c 3 p 0 Release: 3
+87970 t 2 c 3 p 2 Call peer 0 SendAppendEntries Success! cost: 751.484µs sendAppendEntriesTimeout = 3.41544ms
+87970 t 2 c 3 p 2 leader waiting
+87970 t 2 c 3 p 0 log 1 {1 11} -> applyCh
+87970 t 2 c 3 p 0 log 2 {0 <nil>} -> applyCh
+87970 t 2 c 3 p 0 log 3 {2 12} -> applyCh
+87969 t 2 c 3 p 1 log 1 {1 11} -> applyCh
+87970 t 2 c 3 p 1 log 2 {0 <nil>} -> applyCh
+87970 t 2 c 3 p 1 log 3 {2 12} -> applyCh
+88065 t 2 c 3 p 2 rf.aeTimer reset
+88070 t 2 c 3 p 1 received peer 2 RequestAppendEntries
+88070 t 2 c 3 p 1 rf.timer reset 387ms
+88070 t 2 c 3 p 1 log length is 5 args.PrevLogIndex from peer 2 is 3
+88070 t 2 c 3 p 1 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88071 t 2 c 3 p 2 Call peer 1 SendAppendEntries Success! cost: 702.409µs sendAppendEntriesTimeout = 2.872833ms
+88070 t 2 c 3 p 0 received peer 2 RequestAppendEntries
+88071 t 2 c 3 p 0 rf.timer reset 390ms
+88071 t 2 c 3 p 0 log length is 5 args.PrevLogIndex from peer 2 is 3
+88071 t 2 c 3 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88071 t 2 c 3 p 2 Call peer 0 SendAppendEntries Success! cost: 900.94µs sendAppendEntriesTimeout = 2.478454ms
+88071 t 2 c 3 p 2 leader waiting
+88171 t 2 c 3 p 1 received peer 2 RequestAppendEntries
+88172 t 2 c 3 p 1 rf.timer reset 387ms
+88172 t 2 c 3 p 1 log length is 5 args.PrevLogIndex from peer 2 is 3
+88172 t 2 c 3 p 1 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88172 t 2 c 3 p 2 Call peer 1 SendAppendEntries Success! cost: 550.281µs sendAppendEntriesTimeout = 2.092819ms
+88172 t 2 c 3 p 0 received peer 2 RequestAppendEntries
+88172 t 2 c 3 p 0 rf.timer reset 390ms
+88172 t 2 c 3 p 0 log length is 5 args.PrevLogIndex from peer 2 is 3
+88172 t 2 c 3 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88172 t 2 c 3 p 2 Call peer 0 SendAppendEntries Success! cost: 746.81µs sendAppendEntriesTimeout = 1.823617ms
+88172 t 2 c 3 p 2 leader waiting
+88265 t 2 c 3 p 2 rf.aeTimer reset
+88272 t 2 c 3 p 1 received peer 2 RequestAppendEntries
+88273 t 2 c 3 p 1 rf.timer reset 387ms
+88273 t 2 c 3 p 1 log length is 5 args.PrevLogIndex from peer 2 is 3
+88273 t 2 c 3 p 1 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88273 t 2 c 3 p 2 Call peer 1 SendAppendEntries Success! cost: 640.253µs sendAppendEntriesTimeout = 1.586944ms
+88273 t 2 c 3 p 0 received peer 2 RequestAppendEntries
+88273 t 2 c 3 p 0 rf.timer reset 390ms
+88273 t 2 c 3 p 0 log length is 5 args.PrevLogIndex from peer 2 is 3
+88273 t 2 c 3 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88273 t 2 c 3 p 2 Call peer 0 SendAppendEntries Success! cost: 790.805µs sendAppendEntriesTimeout = 1.427716ms
+88273 t 2 c 3 p 2 leader waiting
+88374 t 2 c 3 p 1 received peer 2 RequestAppendEntries
+88374 t 2 c 3 p 1 rf.timer reset 387ms
+88374 t 2 c 3 p 1 log length is 5 args.PrevLogIndex from peer 2 is 3
+88374 t 2 c 3 p 1 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88374 t 2 c 3 p 2 Call peer 1 SendAppendEntries Success! cost: 565.505µs sendAppendEntriesTimeout = 1.255273ms
+88374 t 2 c 3 p 0 received peer 2 RequestAppendEntries
+88374 t 2 c 3 p 0 rf.timer reset 390ms
+88374 t 2 c 3 p 0 log length is 5 args.PrevLogIndex from peer 2 is 3
+88375 t 2 c 3 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>}] [{0 <nil>}]
+88375 t 2 c 3 p 2 Call peer 0 SendAppendEntries Success! cost: 886.019µs sendAppendEntriesTimeout = 1.181422ms
+88375 t 2 c 3 p 2 leader waiting
+88465 t 2 c 3 p 2 rf.aeTimer reset
+88474 t 0 c 0 p 2 readPersist: PersistentState, {2 2 [{0 <nil>} {1 11} {0 <nil>} {2 12}]}
+88665 t 2 c 3 p 2 rf.aeTimer reset
+88732 t 2 c 0 p 2 rf.aeTimer reset
+88733 t 2 c 0 p 2 Follower -> PreVote
+88733 t 2 c 3 p 1 received peer 2 RequestPreVote true 3 4
+88734 t 2 c 0 p 2 Call peer 1 SendRequestVote Success! cost: 733.228µs sendRequestVoteTimeout = 3.990984ms
+88734 t 2 c 3 p 0 received peer 2 RequestPreVote true 3 4
+88734 t 2 c 0 p 2 Call peer 0 SendRequestVote Success! cost: 920.739µs sendRequestVoteTimeout = 3.376935ms
+88761 t 2 c 3 p 1 Follower -> PreVote
+88761 t 2 c 0 p 2 received peer 1 RequestPreVote false 4 3
+88761 t 2 c 0 p 2 prevotes for peer 1/2
+88761 t 2 c 3 p 1 rf.aeTimer reset
+88762 t 2 c 3 p 0 received peer 1 RequestPreVote true 4 4
+88762 t 2 c 3 p 1 Call peer 2 SendRequestVote Success! cost: 464.4µs sendRequestVoteTimeout = 2.794428ms
+88762 t 2 c 3 p 1 Call peer 0 SendRequestVote Success! cost: 238.469µs sendRequestVoteTimeout = 2.283236ms
+88762 t 2 c 3 p 1 PreVote -> Candidate 3/2
+88762 t 2 c 0 p 2 received peer 1 RequestVote
+88762 t 2 c 0 p 2 finds peer 1 Term 3 larger then its currentTerm 2
+88762 t 2 c 0 p 2 PreVote -> Follower 
+88762 t 3 c 0 p 2 -------- 4 3 --------------
+88762 t 3 c 0 p 2 doesn't vote for peer 1
+88762 t 3 c 3 p 1 Call peer 2 SendRequestVote Success! cost: 479.41µs sendRequestVoteTimeout = 1.92247ms
+88762 t 2 c 3 p 0 received peer 1 RequestVote
+88762 t 2 c 3 p 0 finds peer 1 Term 3 larger then its currentTerm 2
+88762 t 2 c 3 p 0 Follower -> Follower 
+88763 t 3 c 3 p 0 votes for peer 1/-1
+88763 t 3 c 3 p 1 Call peer 0 SendRequestVote Success! cost: 642.637µs sendRequestVoteTimeout = 1.666503ms
+88763 t 3 c 3 p 1 Candidate -> Leader, 3/2
+88763 t 3 c 0 p 2 received peer 1 RequestAppendEntries
+88763 t 3 c 0 p 2 rf.timer reset 252ms
+88763 t 3 c 3 p 1 Call peer 2 SendAppendEntries Success! cost: 310.028µs sendAppendEntriesTimeout = 1.007143ms
+88763 t 3 c 3 p 0 received peer 1 RequestAppendEntries
+88763 t 3 c 3 p 0 rf.timer reset 271ms
+88763 t 3 c 3 p 0 log length is 5 args.PrevLogIndex from peer 1 is 4
+88763 t 3 c 3 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>} {0 <nil>}] [{0 <nil>}]
+88763 t 3 c 3 p 1 Call peer 0 SendAppendEntries Success! cost: 433.943µs sendAppendEntriesTimeout = 892.503µs
+88763 t 3 c 3 p 1 leader waiting
+88776 t 3 c 3 p 1 received command 13
+88776 t 3 c 3 p 1 append log index is 5
+88864 t 3 c 0 p 2 received peer 1 RequestAppendEntries
+88864 t 3 c 0 p 2 rf.timer reset 252ms
+88864 t 3 c 0 p 2 log length is 4 args.PrevLogIndex from peer 1 is 3
+88864 t 3 c 0 p 2 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>} {3 13} {0 <nil>}] [{0 <nil>} {3 13} {0 <nil>}]
+88864 t 3 c 3 p 2 Release: 3
+88864 t 3 c 3 p 1 Call peer 2 SendAppendEntries Success! cost: 662.425µs sendAppendEntriesTimeout = 846.487µs
+88864 t 3 c 3 p 0 received peer 1 RequestAppendEntries
+88864 t 3 c 3 p 0 rf.timer reset 271ms
+88864 t 3 c 3 p 0 log length is 6 args.PrevLogIndex from peer 1 is 4
+88864 t 3 c 3 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>} {3 13} {0 <nil>}] [{3 13} {0 <nil>}]
+88865 t 3 c 3 p 1 Call peer 0 SendAppendEntries Timeout! 1.692974ms
+88865 t 3 c 3 p 1 Call peer 0 SendAppendEntries Failed!
+88865 t 3 c 3 p 1 3 6 5 [4 5 5]
+88865 t 3 c 5 p 1 Release: 2
+88865 t 3 c 5 p 1 commitIndex 5 nextIndex [5 6 6]
+88865 t 3 c 3 p 2 received peer 1 RequestAppendEntries
+88865 t 3 c 3 p 2 rf.timer reset 252ms
+88865 t 3 c 3 p 2 log length is 7 args.PrevLogIndex from peer 1 is 5
+88865 t 3 c 3 p 2 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>} {3 13} {0 <nil>}] [{0 <nil>}]
+88865 t 3 c 5 p 2 Release: 4
+88865 t 3 c 5 p 1 Call peer 2 SendAppendEntries Success! cost: 503.309µs sendAppendEntriesTimeout = 1.455041ms
+88865 t 3 c 3 p 0 received peer 1 RequestAppendEntries
+88865 t 3 c 3 p 0 rf.timer reset 271ms
+88865 t 3 c 3 p 0 log length is 7 args.PrevLogIndex from peer 1 is 4
+88865 t 3 c 3 p 0 [{0 <nil>} {1 11} {0 <nil>} {2 12} {0 <nil>} {3 13} {0 <nil>}] [{3 13} {0 <nil>}]
+88866 t 3 c 5 p 0 Release: 2
+88866 t 3 c 5 p 1 Call peer 0 SendAppendEntries Success! cost: 723.571µs sendAppendEntriesTimeout = 1.308747ms
+88866 t 3 c 5 p 1 leader waiting
+88865 t 3 c 5 p 1 log 4 {0 <nil>} -> applyCh
+88866 t 3 c 5 p 1 log 5 {3 13} -> applyCh
+88864 t 3 c 3 p 2 log 1 {1 11} -> applyCh
+88866 t 3 c 5 p 2 log 2 {0 <nil>} -> applyCh
+88866 t 3 c 5 p 2 log 3 {2 12} -> applyCh
+88866 t 3 c 5 p 2 log 4 {0 <nil>} -> applyCh
+88866 t 3 c 5 p 2 log 5 {3 13} -> applyCh
+88866 t 3 c 5 p 2 log 6 {0 <nil>} -> applyCh
+panic: runtime error: index out of range [7] with length 7
+
+goroutine 57 [running]:
+6.824/raft.(*Raft).getLogByIndex(...)
+	/home/feathercyc/6.824/src/raft/raft.go:832
+6.824/raft.(*Raft).applier(0xc0000ba2d0)
+	/home/feathercyc/6.824/src/raft/raft.go:754 +0x246
+created by 6.824/raft.Make
+	/home/feathercyc/6.824/src/raft/raft.go:820 +0x3fd
+exit status 2
+FAIL	6.824/raft	1.690s
